@@ -32,6 +32,6 @@ encontrar o projeto e algumas outras aplicações desenvolvidas por mim.
 
 Ele vai pedir um login. Existem duas credenciais:
 
-Credencial de Administrador: Login: Adm Senha: 1234abc
+**Credencial de Administrador**: Login: Adm Senha: 1234abc
 
-Credencial de Cliente: Login: Cliente Senha: 1234abc
+**Credencial de Cliente**: Login: Cliente Senha: 1234abc
