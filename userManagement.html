@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Gerenciamento de Usuário</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css" />
+  <link rel="stylesheet" href="css/animate.css" />
+
+  <link rel="stylesheet" href="css/owl.carousel.min.css" />
+  <link rel="stylesheet" href="css/owl.theme.default.min.css" />
+  <link rel="stylesheet" href="css/magnific-popup.css" />
+
+  <link rel="stylesheet" href="css/aos.css" />
+
+  <link rel="stylesheet" href="css/ionicons.min.css" />
+
+  <link rel="stylesheet" href="css/bootstrap-datepicker.css" />
+  <link rel="stylesheet" href="css/jquery.timepicker.css" />
+
+  <link rel="stylesheet" href="css/flaticon.css" />
+  <link rel="stylesheet" href="css/icomoon.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<div id="includeHeaderUser"></div>
+
+<body class="goto-here" onload="homeOperations()">
+  <input id="accessRole" type="hidden" value="2" />
+  <section id="home-section" class="hero">
+    <div class="container p-4">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a id="tabPersonalData" href="#formTabPersonalData" aria-controls="formTabPersonalData"
+            class="nav-link active" data-toggle="tab" aria-selected="true" role="tab">Dados Pessoais
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+            aria-selected="true">Usuário
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="change-password-tab" data-toggle="tab" href="#changePassword" role="tab"
+            aria-controls="changePassword" aria-selected="false">Alterar Senha</a>
+        </li>
+      </ul>
+
+      <div class="tab-content" id="myTabContent">
+        <!-- Dados Pessoais -->
+        <div class="tab-pane fade show active" id="formTabPersonalData" role="tabpanel"
+          aria-labelledby="tabPersonalData">
+          <p></p>
+
+          <h2 style="font-size: 20px;" class="mb-0">Dados pessoais</h2>
+          <form id="formPersonalData" name="formPersonalData">
+            <div class="row">
+              <input type="hidden" id="idProvider" name="idProvider" form="formProvider" />
+
+              <input type="hidden" id="fieldUpdate" name="fieldUpdate" />
+
+              <div class="col-md-6">
+                <label class="reduced-input-label" for="txtName">Nome*</label>
+                <input type="text" class="form-control reduced-input" id="txtName" name="txtName"
+                  onkeypress="updateField('txtName')" />
+              </div>
+              <div class="col-md-6">
+                <label class="reduced-input-label" for="txtLastName">Sobrenome*</label>
+                <input type="text" class="form-control reduced-input" id="txtLastName" name="txtLastName"
+                  onkeypress="updateField('txtLastName')" />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm">
+                <label class="reduced-input-label" for="txtBirthDate">Data de nascimento*</label>
+                <input type="date" class="form-control reduced-input" id="txtBirthDate"
+                  onfocus="updateField('txtBirthDate')" onblur="updateField('txtBirthDate')"
+                  onkeypress="updateField('txtBirthDate')" autocomplete="off" name="txtBirthDate" />
+              </div>
+              <div class="col-sm">
+                <label class="reduced-input-label" for="txtGender">Gênero*</label>
+                <select onclick="updateField('txtGender')" id="txtGender" name="txtGender"
+                  class="form-control reduced-input">
+                  <option value=""></option>
+                  <option value="M">Masculino</option>
+                  <option value="F">Feminino</option>
+                  <option value="O">Outro</option>
+                </select>
+              </div>
+              <div class="col-sm">
+                <label class="reduced-input-label" for="txtCpf">CPF*</label>
+                <input type="text" class="form-control reduced-input" id="txtCpf" name="txtCpf"
+                  onkeypress="updateField('txtCpf')" />
+              </div>
+            </div>
+          </form>
+
+          <form method="POST" id="formPhones" action="providerPhonesCreate">
+            <div class="row">
+              <div class="col-sm">
+                <label class="reduced-input-label" for="txtPhoneType">Tipo Telefone*</label>
+
+                <select id="txtPhoneType" name="txtPhoneType" class="form-control reduced-input">
+                  <option value=""></option>
+                  <option value="Celular">Celular</option>
+                  <option value="Telefone">Telefone</option>
+                </select>
+              </div>
+              <div class="col-sm-3">
+                <label class="reduced-input-label" for="txtPhone">Telefone*</label>
+                <input type="text" class="form-control reduced-input" id="txtPhone" name="txtPhone" />
+              </div>
+
+              <div class="col-sm-1 form-group">
+                <label class="reduced-input-label" for="addPhone"></label>
+                <input id="addPhone" name="addPhone" class="btn btn-primary py-2 px-4" type="submit" value="+" />
+              </div>
+
+              <div class="col-sm">
+                <label class="reduced-input-label" for="tablePhones">Telefones adicionados</label>
+
+                <table id="tablePhones" class="table-secondary">
+                  <thead class="thead-light reduced-input">
+                    <tr class="text-center">
+                      <th>Tipo</th>
+                      <th>Telefone</th>
+                      <th>&nbsp;</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="text-center">
+                      <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                        CELULAR
+                      </td>
+                      <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                        (11)98546-1081
+                      </td>
+                      <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                        <a onclick="consistDeletePhone('${ph}')">
+                          <span class="ion-ios-close"></span>
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <input type="reset" id="resetForm" name="resetForm" value="Limpar" style="display: none;" />
+            </div>
+          </form>
+
+          <hr />
+          <h2 style="font-size: 20px;" class="mb-0">Endereço Residencial</h2>
+
+          <form id="formHomeAddressProvider" name="formHomeAddressProvider">
+            <input type="hidden" id="fieldUpdateAddress" name="fieldUpdateAddress" />
+            <div class="row">
+              <div class="col-sm">
+                <label class="reduced-input-label" for="txtResidenceTypeHome">Tipo de residência*</label>
+                <select onclick="updateFieldAddress('txtResidenceType')" id="txtResidenceType" name="txtResidenceType"
+                  class="form-control reduced-input">
+                  <option value=""></option>
+                  <option value="Casa">Casa</option>
+                  <option value="Apartamento">Apartamento</option>
+                  <option value="Sobrado">Sobrado</option>
+                  <option value="Loja">Loja</option>
+                  <option value="Galpão">Galpão</option>
+                  <option value="Outros">Outros</option>
+                </select>
+              </div>
+              <div class="col-sm">
+                <label class="reduced-input-label" for="txtStreetType">Tipo do logradouro*</label>
+                <select onclick="updateFieldAddress('txtStreetType')" id="txtStreetType" name="txtStreetType"
+                  class="form-control reduced-input">
+                  <option value=""></option>
+                  <option value="Rua">Rua</option>
+                  <option value="Avenida">Avenida</option>
+                  <option value="Travessa">Travessa</option>
+                  <option value="Passagem">Passagem</option>
+                  <option value="Outros">Outros</option>
+                </select>
+              </div>
+              <div class="col-sm-5">
+                <label class="reduced-input-label" for="txtStreetName">Logradouro*</label>
+                <input type="text" class="form-control reduced-input" name="txtStreetName" id="txtStreetName"
+                  onkeypress="updateFieldAddress('txtStreetName')" />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm">
+                <label class="reduced-input-label" for="txtNumber">Número*</label>
+                <input type="text" class="form-control reduced-input" name="txtNumber" id="txtNumber"
+                  onkeypress="updateFieldAddress('txtNumber')" />
+              </div>
+
+              <div class="col-sm">
+                <label class="reduced-input-label" for="txtCep">CEP*</label>
+                <input type="text" class="form-control reduced-input" name="txtCep" id="txtCep"
+                  onkeypress="updateFieldAddress('txtCep')" />
+              </div>
+              <div class="col-sm-5">
+                <label class="reduced-input-label" for="txtNeighnorhood">Bairro*</label>
+                <input type="text" class="form-control reduced-input" name="txtNeighnorhood" id="txtNeighnorhood"
+                  onkeypress="updateFieldAddress('txtNeighnorhood')" />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm">
+                <label class="reduced-input-label" for="txtCountry">País*</label>
+                <select onchange="proccessCountry()" id="txtCountry" name="txtCountry"
+                  class="form-control reduced-input">
+                  <option value="0"></option>
+                  <option value="1">Brasil</option>
+                  <option value="2">EUA</option>
+                </select>
+              </div>
+
+              <div class="col-sm">
+                <label class="reduced-input-label" for="txtState">Estado*</label>
+                <select id="txtState" name="txtState" class="form-control reduced-input">
+                  <option value="0"></option>
+                  <option value="1">Acre </option>
+                  <option value="2">Alagoas </option>
+                  <option value="3">Amapá </option>
+                  <option value="4">Amazonas </option>
+                  <option value="5">Bahia </option>
+                  <option value="6">Ceará </option>
+                  <option value="7">Espírito Santo </option>
+                  <option value="8">Goiás </option>
+                  <option value="9">Maranhão </option>
+                  <option value="10">Mato Grosso </option>
+                  <option value="11">Mato Grosso do Sul </option>
+                  <option value="12">Minas Gerais </option>
+                  <option value="13">Pará </option>
+                  <option value="14">Paraíba </option>
+                  <option value="15">Paraná </option>
+                  <option value="16">Pernambuco </option>
+                  <option value="17">Piauí </option>
+                  <option value="18">Rio de Janeiro </option>
+                  <option value="19">Rio Grande do Norte</option>
+                  <option value="20">Rio Grande do Sul </option>
+                  <option value="21">Rondônia </option>
+                  <option value="22">Roraima </option>
+                  <option value="23">Santa Catarina </option>
+                  <option value="24">São Paulo </option>
+                  <option value="25">Sergipe </option>
+                  <option value="26">Tocantins </option>
+                  <option value="27">Distrito Federal </option>
+                </select>
+              </div>
+
+              <div class="col-sm">
+                <label class="reduced-input-label" for="txtCity">Cidade*</label>
+                <input type="text" class="form-control reduced-input" name="txtCity" id="txtCity"
+                  onkeypress="updateFieldAddress('txtCity')" />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm">
+                <label class="reduced-input-label" for="txtObservation">Observações</label>
+                <input type="text" class="form-control reduced-input" name="txtObservation" id="txtObservation"
+                  onkeypress="updateFieldAddress('txtObservation')" />
+              </div>
+            </div>
+          </form>
+
+          &nbsp;&nbsp;
+          <div class="row">
+            <input type="button" class="btn btn-primary" id="btnSendPersonalData" name="btnSendPersonalData"
+              onClick="location.href=location.href" value="Salvar" />
+          </div>
+        </div>
+
+        <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+          <form class="pt-3 pl-1 pr-1" action="userUpdate" method="POST">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="txtEmail" class="reduced-input-label">Email</label>
+                <input type="email" class="form-control reduced-input" id="txtEmail" name="txtEmail"
+                  placeholder="E-Mail" />
+              </div>
+              <div class="form-group col-md-6">
+                <label for="txtLogin" class="reduced-input-label">Nome de usuário</label>
+                <input type="text" class="form-control reduced-input" id="txtLogin" name="txtLogin"
+                  placeholder="Nome de usuário" />
+              </div>
+            </div>
+
+            <input type="button" class="btn btn-primary" id="btnSend" name="btnSend" value="Salvar"
+              onClick="location.href=location.href" />
+          </form>
+        </div>
+        <div class="tab-pane fade" id="changePassword" role="tabpanel" aria-labelledby="change-password-tab">
+          <form class="pt-3 pl-1 pr-1" action="userUpdate" method="POST">
+            <div class="form-group">
+              <label for="txtCurrentPassword" class="reduced-input-label">Digite a senha atual</label>
+              <input type="password" class="form-control reduced-one-line-input" id="txtCurrentPassword"
+                name="txtCurrentPassword" aria-describedby="passwordHelp" placeholder="Senha atual" />
+              <small id="passwordHelp" class="form-text text-muted">Nunca compartilhe dados sigilosos, como senhas com
+                ninguém</small>
+            </div>
+            <div class="form-group">
+              <label for="txtNewPassword" class="reduced-input-label">Digite a nova senha</label>
+              <input type="password" class="form-control reduced-one-line-input" id="txtNewPassword"
+                name="txtNewPassword" placeholder="Nova senha" />
+            </div>
+            <div class="form-group">
+              <label for="txtConfirmNewPassword" class="reduced-input-label">Confirme a nova senha</label>
+              <input type="password" class="form-control reduced-one-line-input" id="txtConfirmNewPassword"
+                name="txtConfirmNewPassword" placeholder="Nova senha" />
+            </div>
+            <input type="button" class="btn btn-primary" id="btnSend" name="btnSend" value="Salvar alterações"
+              onClick="location.href=location.href" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--footer-->
+  <footer class="ftco-footer ftco-section">
+    <div class="container">
+      <div class="row">
+        <div class="mouse"> <a href="#" class="mouse-icon">
+            <div class="mouse-wheel"> <span class="ion-ios-arrow-up"></span> </div>
+          </a> </div>
+      </div>
+      <div class="row mb-5">
+        <div class="col-md">
+          <div class="ftco-footer-widget mb-4">
+            <h2 class="ftco-heading-2">ComicCompras</h2>
+            <p> Uma iniciativa criada de Nerds para Nerds em todo o Brasil, que desejam ter um relicário à nostalgia e
+              cultura pop. </p>
+            <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+              <li class="ftco-animate"> <a href="#"><span class="icon-twitter"></span></a> </li>
+              <li class="ftco-animate"> <a href="#"><span class="icon-facebook"></span></a> </li>
+              <li class="ftco-animate"> <a href="#"><span class="icon-instagram"></span></a> </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="ftco-footer-widget mb-4 ml-md-5">
+            <h2 class="ftco-heading-2">Menu</h2>
+            <ul class="list-unstyled">
+              <li><a href="#" class="py-2 d-block">Compras</a></li>
+              <li><a href="#" class="py-2 d-block">Sobre</a></li>
+              <li><a href="#" class="py-2 d-block">Contato</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="ftco-footer-widget mb-4">
+            <h2 class="ftco-heading-2">Ajuda</h2>
+            <div class="d-flex">
+              <ul class="list-unstyled mr-l-5 pr-l-3 mr-4">
+                <li> <a href="#" class="py-2 d-block">Informações de entrega</a> </li>
+                <li> <a href="#" class="py-2 d-block">Trocas &amp; Devoluções</a> </li>
+                <li> <a href="#" class="py-2 d-block">Termos &amp; condições</a> </li>
+                <li> <a href="#" class="py-2 d-block">Política de Privacidade</a> </li>
+              </ul>
+              <ul class="list-unstyled">
+                <li><a href="#" class="py-2 d-block">FAQs</a></li>
+                <li><a href="#" class="py-2 d-block">Contato</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="ftco-footer-widget mb-4">
+            <h2 class="ftco-heading-2">Perguntas?</h2>
+            <div class="block-23 mb-3">
+              <ul>
+                <li> <span class="icon icon-map-marker"></span><span class="text">Uma Rua Fake, 999, Berrini, São Paulo,
+                    SP, Brasil</span> </li>
+                <li> <a href="#"><span class="icon icon-phone"></span><span class="text">(11) 4002-8922 </span></a>
+                </li>
+                <li> <a href="#"><span class="icon icon-envelope pr-1"></span><span
+                      class="text">atendimento@comiccompras.com.br</span></a> </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <p>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --> Copyright &copy;
+            <script>
+              document.write(new Date().getFullYear());
+            </script> All rights reserved | This template is made with <i class="icon-heart color-danger"
+              aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/jquery.waypoints.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/jquery.animateNumber.min.js"></script>
+  <script src="js/bootstrap-datepicker.js"></script>
+  <script src="js/scrollax.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false">
+  </script>
+  <script src="js/google-map.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/mockingActions/loginUser.js"></script>
+  <script src="js/mockingActions/includeHeaders.js"></script>
+  <script>
+    function homeOperations() {
+      if (!verifyLoggedUser())
+        window.location = "login.html"
+      else {
+        includeHeader()
+      }
+
+    }
+  </script>
+  <script>
+    $(document).ready(function (event) {
+      $("#btnSendPersonalData").click(function (e) {
+        location.reload();
+      });
+    });
+
+    function goToPasswordUpdate() {
+      const goToPasswordChange = document.getElementById(
+        "goToPasswordChange"
+      );
+      if (goToPasswordChange.value !== "") {
+        const passwordChange = document.getElementById("change-password-tab");
+        passwordChange.dispatchEvent(
+          new Event("click", {
+            bubbles: true
+          })
+        );
+      }
+    }
+  </script>
+</body>
+
+</html>

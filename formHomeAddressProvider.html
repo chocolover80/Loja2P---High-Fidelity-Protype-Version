@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<body id="body-form" class="goto-here">
+
+	<form id="formHomeAddressProvider" name="formHomeAddressProvider">
+		<input type="hidden" id="fieldUpdateAddress" name="fieldUpdateAddress">
+		<div class="row">
+			<div class="col-sm">
+				<label class="reduced-input-label" for="txtResidenceTypeHome">Tipo de resid�ncia*</label>
+				<select onclick="updateFieldAddress('txtResidenceType')" id="txtResidenceType"
+					name="txtResidenceType" class="form-control reduced-input">
+					<option value=""></option>
+					<option
+							 value="Casa">Casa</option>
+					<option
+							 value="Apartamento">Apartamento</option>
+					<option
+							value="Sobrado">Sobrado</option>
+					<option
+							value="Loja">Loja</option>
+					<option
+							value="Galp�o">Galpão</option>
+					<option
+							value="Outros">Outros</option>
+				</select> 
+			</div>
+			<div class="col-sm">
+				<label class="reduced-input-label" for="txtStreetType">Tipo do logradouro*</label>
+				<select onclick="updateFieldAddress('txtStreetType')" id="txtStreetType"
+					name="txtStreetType" class="form-control reduced-input">
+					<option value=""></option>
+					<option
+								value="Rua">Rua</option>
+					<option  
+								value="Avenida">Avenida</option>
+					<option 
+								value="Travessa">Travessa</option>
+					<option  
+								value="Passagem">Passagem</option>
+					<option  
+								value="Outros">Outros</option>
+				</select> 
+				
+			</div>
+			<div class="col-sm-5">
+				<label class="reduced-input-label" for="txtStreetName">Logradouro*</label>
+				<input type="text" class="form-control reduced-input" name="txtStreetName" 
+					id="txtStreetName"  onkeypress="updateFieldAddress('txtStreetName')"  >
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-sm">
+				<label class="reduced-input-label" for="txtNumber">N�mero*</label>
+				<input type="text" class="form-control reduced-input" name="txtNumber"
+					id="txtNumber" onkeypress="updateFieldAddress('txtNumber')">
+			</div>
+			
+			<div class="col-sm">
+				<label class="reduced-input-label" for="txtCep">CEP*</label>
+				<input type="text" class="form-control reduced-input" name="txtCep"
+					id="txtCep" onkeypress="updateFieldAddress('txtCep')" >
+			</div>
+			<div class="col-sm-5">
+				<label class="reduced-input-label" for="txtNeighnorhood">Bairro*</label>
+				<input type="text" class="form-control reduced-input" name="txtNeighnorhood"
+					id="txtNeighnorhood" onkeypress="updateFieldAddress('txtNeighnorhood')" >
+			</div>
+		</div>
+
+		<div class="row">
+		
+			<div class="col-sm">
+				<label class="reduced-input-label" for="txtCountry">Pa�s*</label>
+				<select onchange="proccessCountry()" id="txtCountry"
+					name="txtCountry" class="form-control reduced-input">
+					<option value="0"></option>
+					<option value="1">Brasil</option>
+					<option value="2">EUA</option>
+					
+				</select> 
+			</div> 
+
+			<div class="col-sm">
+				<label class="reduced-input-label" for="txtState">Estado*</label>
+				<select  id="txtState"
+					name="txtState" class="form-control reduced-input">
+					<option value="0"></option>
+					<option value="1">Acre 				  </option> 
+					<option value="2">Alagoas             </option>
+					<option value="3">Amap�               </option>
+					<option value="4">Amazonas            </option>
+					<option value="5">Bahia               </option>
+					<option value="6">Cear�               </option>
+					<option value="7">Esp�rito Santo      </option>
+					<option value="8">Goi�s               </option>
+					<option value="9">Maranh�o            </option>
+					<option value="10">Mato Grosso        </option>
+					<option value="11">Mato Grosso do Sul </option>
+					<option value="12">Minas Gerais       </option>
+					<option value="13">Par�               </option>
+					<option value="14">Para�ba            </option>
+					<option value="15">Paran�             </option>
+					<option value="16">Pernambuco         </option>
+					<option value="17">Piau�              </option>
+					<option value="18">Rio de Janeiro     </option>
+					<option value="19">Rio Grande do Norte</option>
+					<option value="20">Rio Grande do Sul  </option>
+					<option value="21">Rond�nia           </option>
+					<option value="22">Roraima            </option>
+					<option value="23">Santa Catarina     </option>
+					<option value="24">S�o Paulo          </option>
+					<option value="25">Sergipe            </option>
+					<option value="26">Tocantins          </option>
+					<option value="27">Distrito Federal   </option>
+				</select> 
+				
+			</div> 
+			
+			<div class="col-sm">
+				<label class="reduced-input-label" for="txtCity">Cidade*</label>
+				<input type="text" class="form-control reduced-input" name="txtCity"
+					id="txtCity" onkeypress="updateFieldAddress('txtCity')" >
+			</div>
+			
+		</div>
+		
+		<div class="row">
+			<div class="col-sm">
+				<label class="reduced-input-label" for="txtObservation">Observa��es</label>
+				<input type="text" class="form-control reduced-input" name="txtObservation"
+					id="txtObservation" onkeypress="updateFieldAddress('txtObservation')">
+		 	</div>
+		</div>
+	</form>
+
+	<form action="/comiccompras-projeto-es-iii-les/stateRead" method="POST">
+		<input type="hidden" name="txtCountryHome" id="txtCountryHome"/>
+		<input type="hidden" id="formAddressType" name="formAddressType" value="Home">
+	</form>
+
+	<script>
+		function updateFieldAddress(field) {
+			$("#fieldUpdateAddress").val(field);
+			submitAjax("/homeAddressProviderRedirectCreate", $("#formHomeAddressProvider")); 
+		}
+		
+		function proccessCountry() {
+			updateFieldAddress('txtCountry');
+			alert($("#txtCountry").val());
+		//	alert(formCountryStateHome.getElementById('txtCountry').value);
+			$("#txtCountryHome").val($("#txtCountry").val());
+		//	submitAjax("/stateRead", $("#formHomeAddressProvider")); 
+			
+			
+			//	btnSubmitCountry.click();
+			
+//			location.reload();
+		}
+		
+		function submitAjax(urlAction, form) {
+			$.ajax({
+				type : "POST",
+				url : "/comiccompras-projeto-es-iii-les".concat(urlAction),
+				data : form.serialize(),
+				success : function(data) {	
+				},
+				error: function(data) { 
+	            }  
+			});
+		}
+	</script>
+	
+</body>
+</html>

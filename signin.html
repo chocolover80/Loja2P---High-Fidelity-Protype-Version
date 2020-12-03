@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Cadastro de usuário</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css" />
+    <link rel="stylesheet" href="css/animate.css" />
+
+    <link rel="stylesheet" href="css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="css/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="css/magnific-popup.css" />
+
+    <link rel="stylesheet" href="css/aos.css" />
+
+    <link rel="stylesheet" href="css/ionicons.min.css" />
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css" />
+    <link rel="stylesheet" href="css/jquery.timepicker.css" />
+
+    <link rel="stylesheet" href="css/flaticon.css" />
+    <link rel="stylesheet" href="css/icomoon.css" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body class="goto-here" onload="redirectIfNotNeeded()">
+
+    <!-- include header -->
+
+    <!--  HEADER-->
+    <div class="py-1 bg-primary">
+        <div class="container">
+            <div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
+                <div class="col-lg-12 d-block">
+                    <div class="row d-flex">
+                        <div class="col-md pr-4 d-flex topper align-items-center">
+                            <div class="icon mr-2 d-flex justify-content-center align-items-center">
+                                <span class="icon-phone2"></span>
+                            </div>
+                            <span class="text">DDD 11 4002-8922</span>
+                        </div>
+                        <div class="col-md pr-4 d-flex topper align-items-center">
+                            <div class="icon mr-2 d-flex justify-content-center align-items-center">
+                                <span class="icon-paper-plane"></span>
+                            </div>
+                            <span class="text">atendimento@comiccompras.com.br</span>
+                        </div>
+                        <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
+                            <span class="text">Entrega em até 10 dias úteis &amp; Devolução gratuita.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="images/brand-icon.png" class="brand-icon" />ComicCompras</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a href="login.html" class="nav-link">Retornar ao login</a>
+                    </li>
+                    <!-- 	<li class="nav-item dropdown">						<a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown"							aria-haspopup="true" aria-expanded="false">Compras</a>						<div class="dropdown-menu" aria-labelledby="dropdown04">							<a class="dropdown-item" href="shop.html">Produtos</a>							<a class="dropdown-item" href="wishlist.html">Lista de desejos</a>							<a class="dropdown-item" href="product-single.html">Buscar produtos</a>							<a class="dropdown-item" href="cart.html">Carrinho</a>							<a class="dropdown-item" href="checkout.html">Checkout</a>						</div>					</li> -->
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <input type="hidden" id="goToPasswordChange" value="${ goToPasswordSection }" />
+
+    <!-- End of hidden input section -->
+
+    <section id="home-section" class="hero">
+        <div class="container p-4">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a id="tabPersonalData" href="#formTabPersonalData" aria-controls="formTabPersonalData"
+                        class="nav-link active" data-toggle="tab" aria-selected="true" role="tab">Dados Pessoais
+                    </a>
+                </li>
+                <li class="nav-item">
+					<a id="tabCreditCard" href="#formTabCreditCard" aria-controls="formTabCreditCard" class="nav-link"
+						data-toggle="tab" aria-selected="true" role="tab"
+						onclick="goToConsistTab(tabCreditCard)">Cartões de crédito
+					</a>
+				</li>
+                <li class="nav-item">
+                    <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                        aria-selected="true">Dados de Usuário
+                    </a>
+                </li>
+                
+
+            </ul>
+
+            <div class="tab-content" id="myTabContent">
+                <!-- Dados Pessoais -->
+                <div class="tab-pane fade show active" id="formTabPersonalData" role="tabpanel"
+                    aria-labelledby="tabPersonalData">
+                    <p></p>
+
+                    <h2 style="font-size: 20px;" class="mb-0">Dados pessoais</h2>
+                    <form id="formPersonalData" name="formPersonalData">
+                        <div class="row">
+                            <input type="hidden" id="idProvider" name="idProvider" form="formProvider" />
+
+                            <input type="hidden" id="fieldUpdate" name="fieldUpdate" />
+
+                            <div class="col-md-6">
+                                <label class="reduced-input-label" for="txtName">Nome*</label>
+                                <input type="text" class="form-control reduced-input" id="txtName" name="txtName"
+                                    onkeypress="updateField('txtName')" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="reduced-input-label" for="txtLastName">Sobrenome*</label>
+                                <input type="text" class="form-control reduced-input" id="txtLastName"
+                                    name="txtLastName" onkeypress="updateField('txtLastName')" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm">
+                                <label class="reduced-input-label" for="txtBirthDate">Data de nascimento*</label>
+                                <input type="date" class="form-control reduced-input" id="txtBirthDate"
+                                    onfocus="updateField('txtBirthDate')" onblur="updateField('txtBirthDate')"
+                                    onkeypress="updateField('txtBirthDate')" autocomplete="off" name="txtBirthDate" />
+                            </div>
+                            <div class="col-sm">
+                                <label class="reduced-input-label" for="txtGender">Gênero*</label>
+                                <select onclick="updateField('txtGender')" id="txtGender" name="txtGender"
+                                    class="form-control reduced-input">
+                                    <option value=""></option>
+                                    <option value="M">Masculino</option>
+                                    <option value="F">Feminino</option>
+                                    <option value="O">Outro</option>
+                                </select>
+                            </div>
+                            <div class="col-sm">
+                                <label class="reduced-input-label" for="txtCpf">CPF*</label>
+                                <input type="text" class="form-control reduced-input" id="txtCpf" name="txtCpf"
+                                    onkeypress="updateField('txtCpf')" />
+                            </div>
+                        </div>
+                    </form>
+
+                    <form method="POST" id="formPhones" action="#">
+                        <div class="row">
+                            <div class="col-sm">
+                                <label class="reduced-input-label" for="txtPhoneType">Tipo Telefone*</label>
+
+                                <select id="txtPhoneType" name="txtPhoneType" class="form-control reduced-input">
+                                    <option value=""></option>
+                                    <option value="Celular">Celular</option>
+                                    <option value="Telefone">Telefone</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="reduced-input-label" for="txtPhone">Telefone*</label>
+                                <input type="text" class="form-control reduced-input" id="txtPhone" name="txtPhone" />
+                            </div>
+
+                            <div class="col-sm-1 form-group">
+                                <label class="reduced-input-label" for="addPhone"></label>
+                                <input id="addPhone" name="addPhone" class="btn btn-primary py-2 px-4" type="submit"
+                                    value="+" />
+                            </div>
+
+                            <div class="col-sm">
+                                <label class="reduced-input-label" for="tablePhones">Telefones adicionados</label>
+
+                                <table id="tablePhones" class="table-secondary">
+                                    <thead class="thead-light reduced-input">
+                                        <tr class="text-center">
+                                            <th>Tipo</th>
+                                            <th>Telefone</th>
+                                            <th>&nbsp;</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="text-center">
+                                            <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                                CELULAR
+                                            </td>
+                                            <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                                (11)98546-1081
+                                            </td>
+                                            <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                                <a onclick="consistDeletePhone('${ph}')">
+                                                    <span class="ion-ios-close"></span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <input type="reset" id="resetForm" name="resetForm" value="Limpar" style="display: none;" />
+                        </div>
+                    </form>
+
+                    <hr />
+                    <h2 style="font-size: 20px;" class="mb-0">Endereço Residencial</h2>
+
+                    <form id="formHomeAddressProvider" name="formHomeAddressProvider">
+                        <input type="hidden" id="fieldUpdateAddress" name="fieldUpdateAddress" />
+                        <div class="row">
+                            <div class="col-sm">
+                                <label class="reduced-input-label" for="txtResidenceTypeHome">Tipo de
+                                    residência*</label>
+                                <select onclick="updateFieldAddress('txtResidenceType')" id="txtResidenceType"
+                                    name="txtResidenceType" class="form-control reduced-input">
+                                    <option value=""></option>
+                                    <option value="Casa">Casa</option>
+                                    <option value="Apartamento">Apartamento</option>
+                                    <option value="Sobrado">Sobrado</option>
+                                    <option value="Loja">Loja</option>
+                                    <option value="Galpão">Galpão</option>
+                                    <option value="Outros">Outros</option>
+                                </select>
+                            </div>
+                            <div class="col-sm">
+                                <label class="reduced-input-label" for="txtStreetType">Tipo do logradouro*</label>
+                                <select onclick="updateFieldAddress('txtStreetType')" id="txtStreetType"
+                                    name="txtStreetType" class="form-control reduced-input">
+                                    <option value=""></option>
+                                    <option value="Rua">Rua</option>
+                                    <option value="Avenida">Avenida</option>
+                                    <option value="Travessa">Travessa</option>
+                                    <option value="Passagem">Passagem</option>
+                                    <option value="Outros">Outros</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-5">
+                                <label class="reduced-input-label" for="txtStreetName">Logradouro*</label>
+                                <input type="text" class="form-control reduced-input" name="txtStreetName"
+                                    id="txtStreetName" onkeypress="updateFieldAddress('txtStreetName')" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm">
+                                <label class="reduced-input-label" for="txtNumber">Número*</label>
+                                <input type="text" class="form-control reduced-input" name="txtNumber" id="txtNumber"
+                                    onkeypress="updateFieldAddress('txtNumber')" />
+                            </div>
+
+                            <div class="col-sm">
+                                <label class="reduced-input-label" for="txtCep">CEP*</label>
+                                <input type="text" class="form-control reduced-input" name="txtCep" id="txtCep"
+                                    onkeypress="updateFieldAddress('txtCep')" />
+                            </div>
+                            <div class="col-sm-5">
+                                <label class="reduced-input-label" for="txtNeighnorhood">Bairro*</label>
+                                <input type="text" class="form-control reduced-input" name="txtNeighnorhood"
+                                    id="txtNeighnorhood" onkeypress="updateFieldAddress('txtNeighnorhood')" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm">
+                                <label class="reduced-input-label" for="txtCountry">País*</label>
+                                <select onchange="proccessCountry()" id="txtCountry" name="txtCountry"
+                                    class="form-control reduced-input">
+                                    <option value="0"></option>
+                                    <option value="1">Brasil</option>
+                                    <option value="2">EUA</option>
+                                </select>
+                            </div>
+
+                            <div class="col-sm">
+                                <label class="reduced-input-label" for="txtState">Estado*</label>
+                                <select id="txtState" name="txtState" class="form-control reduced-input">
+                                    <option value="0"></option>
+                                    <option value="1">Acre </option>
+                                    <option value="2">Alagoas </option>
+                                    <option value="3">Amapá </option>
+                                    <option value="4">Amazonas </option>
+                                    <option value="5">Bahia </option>
+                                    <option value="6">Ceará </option>
+                                    <option value="7">Espírito Santo </option>
+                                    <option value="8">Goiás </option>
+                                    <option value="9">Maranhão </option>
+                                    <option value="10">Mato Grosso </option>
+                                    <option value="11">Mato Grosso do Sul </option>
+                                    <option value="12">Minas Gerais </option>
+                                    <option value="13">Pará </option>
+                                    <option value="14">Paraíba </option>
+                                    <option value="15">Paraná </option>
+                                    <option value="16">Pernambuco </option>
+                                    <option value="17">Piauí </option>
+                                    <option value="18">Rio de Janeiro </option>
+                                    <option value="19">Rio Grande do Norte</option>
+                                    <option value="20">Rio Grande do Sul </option>
+                                    <option value="21">Rondônia </option>
+                                    <option value="22">Roraima </option>
+                                    <option value="23">Santa Catarina </option>
+                                    <option value="24">São Paulo </option>
+                                    <option value="25">Sergipe </option>
+                                    <option value="26">Tocantins </option>
+                                    <option value="27">Distrito Federal </option>
+                                </select>
+                            </div>
+
+                            <div class="col-sm">
+                                <label class="reduced-input-label" for="txtCity">Cidade*</label>
+                                <input type="text" class="form-control reduced-input" name="txtCity" id="txtCity"
+                                    onkeypress="updateFieldAddress('txtCity')" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm">
+                                <label class="reduced-input-label" for="txtObservation">Observações</label>
+                                <input type="text" class="form-control reduced-input" name="txtObservation"
+                                    id="txtObservation" onkeypress="updateFieldAddress('txtObservation')" />
+                            </div>
+                        </div>
+                    </form>
+
+                    &nbsp;&nbsp;
+                    <div class="row">
+                        <a href="login.html">
+                            <input type="button" class="btn btn-primary" id="btnSendPersonalData"
+                                name="btnSendPersonalData" value="Salvar" />
+                        </a>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="formTabCreditCard" role="tabpanel" aria-labelledby="tabCreditCard">
+					<p>
+						<div id="fieldsCreditCard">
+							<div class="row">
+								<div class="col-sm">
+									<label class="reduced-input-label" for="towncity">Bandeira do cartão*</label>
+									<select name="txtCardBanner" class="form-control reduced-input">
+										<option value=""></option>
+										<option value="1">Visa</option>
+										<option value="2">MasterCard</option>
+										<option value="3">Elo</option>
+										<option value="4">American Express</option>
+									</select>
+								</div>
+								<div class="col-sm">
+									<label class="reduced-input-label" for="towncity">Número*</label>
+									<input required type="text" class="form-control reduced-input"
+										name="txtNumberCreditCard">
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-sm">
+									<label class="reduced-input-label" for="towncity">Nome impresso no cartão*</label>
+									<input required type="text" class="form-control uppercase reduced-input"
+										name="txtNameCreditCard">
+								</div>
+								<div class="col-sm">
+									<label class="reduced-input-label" for="towncity">Código de segurança*</label>
+									<input required type="text" class="form-control reduced-input"
+										name="txtSecurityCodeCreditCard" id="txtSecurityCodeCreditCard">
+								</div>
+							</div>
+
+
+						</div>
+						<p>
+
+							<div class="row">
+								<div class="col-sm">
+									<input type="button" class="btn btn-primary py-2" value="Adicionar"
+										id="btnSendAddCreditCard" name="btnSendAddCreditCard">
+								</div>
+								<div class="col-sm">
+									<input type="button" value="Cancelar" id="btnSendCancCreditCard"
+										style="display: none;">
+								</div>
+								<div class="col-sm">
+									<input type="reset" id="resetFormCreditCard" name="resetFormCreditCard"
+										style="display: none;">
+								</div>
+							</div>
+							<p>
+								</form>
+
+								<table id="tableCreditCards" class="table">
+									<thead class="thead-light">
+										<tr class="text-center">
+											<th>Bandeira</th>
+											<th>Nome</th>
+											<th>Número</th>
+											<th>&nbsp;</th>
+											<th>&nbsp;</th>
+										</tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+
+								<hr>
+								<div class="row">
+									<div class="col-sm form-group">
+										<input type="button" onclick="goTab(tabProductProvider)"
+											class="btn btn-primary py-3 px-3" value="Voltar">
+									</div>
+
+									<div class="col-sm form-group text-lg-right">
+										<a class="btn btn-primary py-3 px-3" href="providerRead.html">Salvar</a>
+									</div>
+								</div>
+							</p>
+				</div>
+
+                <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <form class="pt-3 pl-1 pr-1" action="userUpdate" method="POST">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="txtEmail" class="reduced-input-label">Email</label>
+                                <input type="email" class="form-control reduced-input" id="txtEmail" name="txtEmail"
+                                    placeholder="E-Mail" />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="txtLogin" class="reduced-input-label">Nome de usuário</label>
+                                <input type="text" class="form-control reduced-input" id="txtLogin" name="txtLogin"
+                                    placeholder="Nome de usuário" />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="txtPassword" class="reduced-input-label">Senha</label>
+                                <input type="password" class="form-control reduced-input" id="txtPassword"
+                                    name="txtPassword" placeholder="Digite a senha" />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="txtConfirmPassword" class="reduced-input-label">Confirme a senha</label>
+                                <input type="password" class="form-control reduced-input" id="txtConfirmPassword"
+                                    name="txtConfirmPassword" placeholder="Confirme a senha" />
+                            </div>
+                        </div>
+
+                        <input type="button" class="btn btn-primary" id="btnSend" name="btnSend" value="Salvar"
+                            onClick="location.href=location.href" />
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!--footer-->
+    <footer class="ftco-footer ftco-section">
+
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <p>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --> Copyright
+                    &copy; <script>
+                        document.write(new Date().getFullYear());
+                    </script> All rights reserved | This template is made with <i class="icon-heart color-danger"
+                        aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </p>
+            </div>
+        </div>
+        </div>
+    </footer>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/jquery.animateNumber.min.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+    <script src="js/scrollax.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false">
+    </script>
+    <script src="js/google-map.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/mockingActions/loginUser.js"></script>
+    <script src="js/mockingActions/includeHeaders.js"></script>
+
+    <script>
+        function redirectIfNotNeeded() {
+            const loggedUser = JSON.parse(localStorage.getItem("loggedUser"))
+            if (loggedUser && parseInt(loggedUser.role) === 1)
+                location.href = "index.html"
+        }
+    </script>
+    <script>
+        function homeOperations() {
+            if (!verifyLoggedUser())
+                window.location = "login.html"
+            else {
+                includeHeader()
+            }
+
+        }
+    </script>
+    <script>
+        $(document).ready(function (event) {
+            $("#btnSendPersonalData").click(function (e) {
+                location.reload();
+            });
+        });
+
+        function goToPasswordUpdate() {
+            const goToPasswordChange = document.getElementById(
+                "goToPasswordChange"
+            );
+            if (goToPasswordChange.value !== "") {
+                const passwordChange = document.getElementById("change-password-tab");
+                passwordChange.dispatchEvent(
+                    new Event("click", {
+                        bubbles: true
+                    })
+                );
+            }
+        }
+    </script>
+</body>
+
+</html>

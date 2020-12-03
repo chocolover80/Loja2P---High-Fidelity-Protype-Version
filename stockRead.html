@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Gerenciamento de Estoque</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css" />
+  <link rel="stylesheet" href="css/animate.css" />
+
+  <link rel="stylesheet" href="css/owl.carousel.min.css" />
+  <link rel="stylesheet" href="css/owl.theme.default.min.css" />
+  <link rel="stylesheet" href="css/magnific-popup.css" />
+
+  <link rel="stylesheet" href="css/aos.css" />
+
+  <link rel="stylesheet" href="css/ionicons.min.css" />
+
+  <link rel="stylesheet" href="css/bootstrap-datepicker.css" />
+  <link rel="stylesheet" href="css/jquery.timepicker.css" />
+
+  <link rel="stylesheet" href="css/flaticon.css" />
+  <link rel="stylesheet" href="css/icomoon.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<div id="includeHeaderAdm"></div>
+
+<body class="goto-here" onload="homeOperations()">
+  <input id="accessRole" type="hidden" value="1" />
+
+
+  <div class="container">
+    <div class="nav-item text-lg-right" style="cursor: pointer">
+      <a class="btn btn-primary py-3 px-5" href="stockEntry.html">Nova entrada</a>
+      <a class="btn btn-primary py-3 px-5" href="stockOut.html">Nova saída</a>
+    </div>
+
+    <form method="post" action="productDelete" id="formproductDelete" name="formproductDelete">
+      <input type="submit" id="redirectproductDelete" name="redirectproductDelete" style="display: none" />
+    </form>
+
+    <br />
+    <p></p>
+
+    <form method="post" action="/comiccompras-projeto-es-iii-les/productRead">
+      <div class="row no-gutters slider-text align-items-center justify-content-center">
+        <div class="col-md-9 ftco-animate text-center">
+          <h1 class="mb-2">Estoque</h1>
+        </div>
+      </div>
+
+      <div class="bg-white p-5 contact-form">
+        <h6 class="text-lg-right" style="font-size: 15px" class="mb-0">
+          *Todos os campos opcionais
+        </h6>
+
+        <div class="row ftco-animate">
+          <div class="col-sm">
+            <label class="towncity" for="txtEntryDate">Data Início</label>
+            <input type="date" class="form-control reduced-input" id="txtEntryDate" autocomplete="off"
+              name="txtEntryDate" />
+          </div>
+
+          <div class="col-sm">
+            <label class="towncity" for="txtEntryDate">Data Fim</label>
+            <input type="date" class="form-control reduced-input" id="txtEntryDate" autocomplete="off"
+              name="txtEntryDate" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm ftco-animate">
+            <label for="towncity">Tipo</label>
+            <select name="txtProvider" id="txtProvider" class="form-control reduced-input">
+              <option value=""></option>
+              <option value="1">Entrada</option>
+              <option value="2">Saída</option>
+            </select>
+          </div>
+
+          <div class="col-sm ftco-animate">
+            <label for="towncity">Motivo</label>
+            <select class="form-control reduced-input">
+              <option value=""></option>
+              <option value="1">Compra</option>
+              <option value="2">Venda</option>
+            </select>
+          </div>
+
+          <div class="col-sm ftco-animate">
+            <label for="towncity">Produto</label>
+            <input type="text" class="form-control reduced-input" id="txtCodBar" name="txtCodBar" />
+          </div>
+        </div>
+
+        <p />
+        <p />
+
+        <div class="row">
+          <input type="button" value="Pesquisar" class="btn btn-primary py-3 px-5"
+            onClick="location.href=location.href" />
+          &nbsp;&nbsp;
+          <input type="reset" value="Limpar" class="btn btn-primary py-3 px-5" />
+        </div>
+      </div>
+    </form>
+
+    <table class="table">
+      <thead class="thead-light">
+        <tr class="text-center">
+          <th>Produto</th>
+          <th>Data</th>
+          <th>Tipo</th>
+          <th>Motivo</th>
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="text-center">
+          <td class="product-name">Sanji Action Figure</td>
+
+          <td class="product-name" style="width: 0%">17/08/2020</td>
+
+          <td class="product-name" style="width: 0%">Entrada</td>
+
+          <td class="product-name" style="width: 0%">Compra</td>
+
+          <td class="product-name" style="width: 5%">
+            <a onclick="updateProvider('${pro}')">
+              <span class="ion-ios-color-wand"></span>
+            </a>
+          </td>
+          <td class="product-name" style="width: 5%">
+            <a onclick="consistDeleteProvider('${pro}')">
+              <span class="ion-ios-close"></span>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!--footer-->
+  <footer class="ftco-footer ftco-section">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <p>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;
+            <script>
+              document.write(new Date().getFullYear());
+            </script>
+            All rights reserved | This template is made with
+            <i class="icon-heart color-danger" aria-hidden="true"></i> by
+            <a href="https://colorlib.com" target="_blank">Colorlib</a>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <br /><br />
+  <p></p>
+  <p>
+    <!-- loader -->
+  </p>
+
+  <div id="ftco-loader" class="show fullscreen">
+    <svg class="circular" width="48px" height="48px">
+      <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+      <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+        stroke="#F96D00" />
+    </svg>
+  </div>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/jquery.waypoints.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/jquery.animateNumber.min.js"></script>
+  <script src="js/bootstrap-datepicker.js"></script>
+  <script src="js/scrollax.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+  <script src="js/mockingActions/loginUser.js"></script>
+  <script src="js/mockingActions/includeHeaders.js"></script>
+  <script>
+    function homeOperations() {
+      if (!verifyLoggedUser())
+        window.location = "login.html"
+      else {
+        includeHeader()
+      }
+
+    }
+  </script>
+  <script type="text/javascript">
+    function updateProvider(id) {
+      $("#idProviderRead").val(id);
+
+      var deleteAddressConfirm = confirm("Deseja editar esse produto?");
+      if (deleteAddressConfirm == true) {
+        redirectProviderUpdate.click();
+      }
+
+      $("#idProviderRead").val("");
+    }
+
+    function consistDeleteProvider(id) {
+      $("#idproductDelete").val(id);
+
+      var deleteAddressConfirm = confirm("Deseja excluir esse produto?");
+      if (deleteAddressConfirm == true) {
+        redirectproductDelete.click();
+      }
+
+      $("#idproductDelete").val("");
+    }
+  </script>
+
+  <script type="text/javascript">
+    if (window.history.replaceState) {
+      window.history.replaceState(null, null, window.location.href);
+    }
+  </script>
+</body>
+
+</html>

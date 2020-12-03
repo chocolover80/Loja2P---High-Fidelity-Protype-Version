@@ -1,0 +1,71 @@
+
+	<form id="formPersonalData" name="formPersonalData">
+		<div class="row">
+		
+			<input type="hidden" id="idProvider" name="idProvider" form="formProvider">
+			
+			<input type="hidden" id="fieldUpdate" name="fieldUpdate">
+				
+			<div class="col-md-6">
+				<label class="reduced-input-label" for="txtName" >Nome*</label>
+				<input type="text" class="form-control reduced-input" id="txtName" 
+					name="txtName" onkeypress="updateField('txtName')" 
+						value="<%=p.getName()!=null?p.getName():""%>">
+			</div>
+			<div class="col-md-6">
+				<label class="reduced-input-label" for="txtLastName">Sobrenome*</label>
+				<input type="text" class="form-control reduced-input" id="txtLastName" 
+					name="txtLastName" onkeypress="updateField('txtLastName')"
+						value="<%=p.getLastName()!=null?p.getLastName():""%>">
+			</div>
+		</div>
+	
+		<div class="row">
+			<div class="col-sm">
+				<label class="reduced-input-label" for="txtBirthDate">Data de nascimento*</label>
+				<input type="date" class="form-control reduced-input" id="txtBirthDate" 
+					onfocus="updateField('txtBirthDate')" onblur="updateField('txtBirthDate')" 
+						onkeypress="updateField('txtBirthDate')" autocomplete='off' name="txtBirthDate" 
+							value="<%=p.getBirthDate()!=null?p.getBirthDateString():""%>">
+			</div>
+			<div class="col-sm">
+				<label class="reduced-input-label" for="txtGender">Gênero*</label>
+				<select onclick="updateField('txtGender')" id="txtGender"
+					name="txtGender" class="form-control reduced-input">
+					<option value=""></option>
+					<option value="M">Masculino</option>
+					<option value="F">Feminino</option>
+					<option 	value="O">Outro</option>
+				</select> 
+			</div>
+			<div class="col-sm">
+				<label class="reduced-input-label" for="txtCpf">CPF*</label>
+				<input type="text" class="form-control reduced-input"
+					id="txtCpf" name="txtCpf" onkeypress="updateField('txtCpf')">
+			</div>
+		</div>		
+	</form>
+	<p>				
+	<jsp:include page="formPhones.jsp"/>
+
+	<script>
+		function updateField(field) {
+			$("#fieldUpdate").val(field);
+			submitAjax("/providerRedirectCreate", $("#formPersonalData")); 
+		}
+		
+		function submitAjax(urlAction, form) {
+			$.ajax({
+				type : "POST",
+				url : "/comiccompras-projeto-es-iii-les".concat(urlAction),
+				data : form.serialize(),
+				success : function(data) {	
+				},
+				error: function(data) { 
+	            }  
+			});
+		}
+	</script>
+
+</body>
+</html>
